@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>CAKRA KMHE Telemetry</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>KMHE Telemetry</title>
 
-  <link rel="stylesheet"
-  href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<style>
 
-  <link rel="stylesheet" href="style.css">
+body{
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+.card{
+background:#222;
+padding:20px;
+margin:15px;
+border-radius:15px;
+}
+
+.value{
+font-size:48px;
+font-weight:bold;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h1>CAKRA KMHE TELEMETRY</h1>
+<h1>CAKRA JAGAD TELEMETRY</h1>
 
 <div class="card">
-  <h2>Speed</h2>
-  <div id="speed">0 km/h</div>
+<h3>Speed</h3>
+<div id="speed" class="value">0</div>
+km/h
 </div>
 
 <div class="card">
-  <h2>TPS</h2>
-  <div id="tps">0 %</div>
+<h3>TPS</h3>
+<div id="tps" class="value">0</div>
+%
 </div>
 
 <div class="card">
-  <h2>Lap</h2>
-  <div id="lap">0</div>
+<h3>Lap</h3>
+<div id="lap" class="value">0</div>
 </div>
 
 <div class="card">
-  <h2>Lap Time</h2>
-  <div id="lapTime">0</div>
+<h3>Lap Time</h3>
+<div id="lapTime" class="value">0</div>
 </div>
 
-<div id="map"></div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script type="module" src="app.js"></script>
 
 </body>
