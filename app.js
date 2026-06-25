@@ -1,5 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import {
+  getDatabase,
+  ref,
+  onValue
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 // =========================
 // FIREBASE CONFIG
@@ -23,13 +27,15 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const telemetryRef = ref(db, "telemetry");
-alert("APP JS LOADED");
 
 // =========================
 // LEAFLET MAP
 // =========================
 
-const map = L.map("map").setView([-7.2575, 112.7521], 15);
+const map = L.map("map").setView(
+  [-7.2575, 112.7521],
+  15
+);
 
 L.tileLayer(
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -38,28 +44,33 @@ L.tileLayer(
   }
 ).addTo(map);
 
-// Marker GPS
+// Marker
 
-const marker = L.marker([-7.2575, 112.7521]).addTo(map);
+const marker = L.marker(
+  [-7.2575, 112.7521]
+).addTo(map);
 
 // Track History
 
 let trackPoints = [];
 
-const polyline = L.polyline(trackPoints, {
-  color: "red",
-  weight: 4
-}).addTo(map);
+const polyline = L.polyline(
+  trackPoints,
+  {
+    color:"red",
+    weight:4
+  }
+).addTo(map);
 
 // =========================
-// FIREBASE REALTIME UPDATE
+// REALTIME DATA
 // =========================
 
-onValue(telemetryRef, (snapshot) => {
+onValue(telemetryRef, (snapshot)=>{
 
   const data = snapshot.val();
 
-  if (!data) return;
+  if(!data) return;
 
   // SPEED
 
@@ -81,18 +92,26 @@ onValue(telemetryRef, (snapshot) => {
   document.getElementById("lapTime").innerHTML =
     data.lapTime || 0;
 
+  // BATTERY
+
+  document.getElementById("battery").innerHTML =
+    Number(data.battery || 100).toFixed(0);
+
   // GPS
 
   const lat = Number(data.lat);
   const lng = Number(data.lng);
 
-  if (!isNaN(lat) && !isNaN(lng)) {
+  if(
+    !isNaN(lat) &&
+    !isNaN(lng)
+  ){
 
-    const pos = [lat, lng];
+    const pos = [lat,lng];
 
     marker.setLatLng(pos);
 
-    map.setView(pos, 18);
+    map.setView(pos,18);
 
     trackPoints.push(pos);
 
