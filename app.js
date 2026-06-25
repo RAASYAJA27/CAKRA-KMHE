@@ -23,6 +23,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const telemetryRef = ref(db, "telemetry");
+alert("APP JS LOADED");
 
 // =========================
 // LEAFLET MAP
